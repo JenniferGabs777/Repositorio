@@ -1164,8 +1164,6 @@
     })();
 })();
 
-
-
 //CERTIFICADO
 /* ================= Pantalla de certificado ========================= */
 document.addEventListener("DOMContentLoaded", () => {
@@ -1261,7 +1259,7 @@ const mainStar = document.createElement("div");
 });
 
 
-
+  // Muestra solo la pantalla que lleva al formulario de registro
 document.addEventListener("DOMContentLoaded", () => {
   const vistaCertificado = document.getElementById("vista-certificado");
   const navLinks = document.querySelectorAll(".nav__links a, .nav__brand");
@@ -1308,25 +1306,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Ejecución inicial al cargar
   gestionarNavegacion();
 });
-
-
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  const vistaCertificado = document.getElementById("vista-certificado");
-  const footerOriginal = document.querySelector("footer, .footer");
-
-  // Clonar el footer y colocarlo dentro de Certificados automáticamente
-  if (vistaCertificado && footerOriginal) {
-    const existeClon = vistaCertificado.querySelector("footer, .footer");
-    
-    if (!existeClon) {
-      const footerClonado = footerOriginal.cloneNode(true);
-      vistaCertificado.appendChild(footerClonado);
-    }
-  }
-});
-
 /* ================= Plantilla de certificado ========================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -1363,17 +1342,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Cantidad alta para lograr el efecto denso de la referencia
     const totalEstrellas = 220;
-
     for (let i = 0; i < totalEstrellas; i++) {
         const estrella = document.createElement('div');
-        
         const x = Math.random() * 100;
         const y = Math.random() * 100;
-        
         // Tamaños variados para dar profundidad (efecto 3D)
         const tipo = Math.random();
         let tamaño, opacidad, sombra;
-
         if (tipo > 0.85) {
             // Estrellas grandes y brillantes
             tamaño = Math.random() * 2 + 1.8;
@@ -1401,9 +1376,12 @@ document.addEventListener("DOMContentLoaded", () => {
         estrella.style.boxShadow = sombra;
         contenedorEstrellas.appendChild(estrella);
     }
+
+    // Insertar al inicio para que quede detrás del texto y los cerros
     marco.insertBefore(contenedorEstrellas, marco.firstChild);
 });
-    // Formulario + impresión
+
+/* ================= Print Certificado ========================= */
 const URL_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbw7g1KgxHyq81fXR2AQ5PORcFNG47Ja8pym-ZcoRedknj_YeZOM2LyVQSl52f0vB8VwSA/exec";
 
 document.getElementById('formulario').addEventListener('submit', function(e) {
@@ -1481,5 +1459,84 @@ document.getElementById('formulario').addEventListener('submit', function(e) {
         alert("Hubo un error al conectar con la base de datos.");
         boton.textContent = "Descarga tu certificado";
         boton.disabled = false;
+    });
+});
+/* ================= Funcionabilidad del botón hamburguesa ========================= */
+document.addEventListener("DOMContentLoaded", function () {
+    const botonMenu = document.querySelector(".nav__toggle");
+    const menuNavegacion = document.querySelector(".nav__links");
+    if (!botonMenu || !menuNavegacion) return;
+    let starContainer = null;
+    let intervalosEstrellas = [];
+    // Función para crear las estrellas
+    function crearEstrellas() {
+        if (starContainer) return; // Si ya existen, no duplicar
+
+        starContainer = document.createElement('div');
+        starContainer.style.position = 'absolute';
+        starContainer.style.inset = '0';
+        starContainer.style.pointerEvents = 'none';
+        starContainer.style.overflow = 'hidden';
+        starContainer.style.zIndex = '1';
+        
+        menuNavegacion.insertBefore(starContainer, menuNavegacion.firstChild);
+
+        for (let i = 0; i < 80; i++) {
+            const star = document.createElement('div');
+            const size = Math.random() * 2 + 1;
+    
+            star.style.position = 'absolute';
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.backgroundColor = '#ffffff';
+            star.style.borderRadius = '50%';
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.boxShadow = '0 0 4px rgba(255, 255, 255, 0.8)';
+            star.style.opacity = Math.random() * 0.7 + 0.3;
+            
+            const duration = Math.random() * 3 + 2;
+            star.style.transition = `opacity ${duration}s ease-in-out`;
+            
+            starContainer.appendChild(star);
+
+            // Guardar el intervalo para poder limpiarlo después
+            const interval = setInterval(() => {
+                if (star.style) {
+                    star.style.opacity = star.style.opacity === '0.2' ? '0.9' : '0.2';
+                }
+            }, duration * 1000);
+            
+            intervalosEstrellas.push(interval);
+        }
+    }
+    // Función para eliminar las estrellas y detener sus animaciones
+    function eliminarEstrellas() {
+        intervalosEstrellas.forEach(interval => clearInterval(interval));
+        intervalosEstrellas = [];
+
+        if (starContainer) {
+            starContainer.remove();
+            starContainer = null;
+        }
+    }
+    // Abrir o cerrar al hacer clic en el botón hamburguesa
+    botonMenu.addEventListener("click", function (e) {
+        e.stopPropagation();
+        const estaAbierto = menuNavegacion.classList.toggle("nav__links--abierto");
+        
+        if (estaAbierto) {
+            crearEstrellas();
+        } else {
+            eliminarEstrellas();
+        }
+    });
+    // Cerrar inmediatamente al hacer clic en cualquier opción del menú
+    const enlaces = menuNavegacion.querySelectorAll("a");
+    enlaces.forEach(function (enlace) {
+        enlace.addEventListener("click", function () {
+            menuNavegacion.classList.remove("nav__links--abierto");
+            eliminarEstrellas(); // Borra las estrellas al seleccionar una opción
+        });
     });
 });
