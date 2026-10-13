@@ -1163,3 +1163,323 @@
         }
     })();
 })();
+
+
+
+//CERTIFICADO
+/* ================= Pantalla de certificado ========================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const certContainer = document.querySelector(".certificate");
+  if (!certContainer) return;
+
+  // 1. Asegura posiciones y resguardos sin alterar el CSS base
+  if (getComputedStyle(certContainer).position === "static") {
+    certContainer.style.position = "relative";
+  }
+
+  // Elevamos los hijos existentes para que estén encima del cielo
+  Array.from(certContainer.children).forEach(child => {
+    child.style.position = "relative";
+    child.style.zIndex = "2";
+  });
+
+  // 2. Insertamos la animación de brillo
+  if (!document.getElementById("sky-cert-styles")) {
+    const styleSheet = document.createElement("style");
+    styleSheet.id = "sky-cert-styles";
+    styleSheet.innerHTML = `
+      @keyframes softTwinkle {
+        0%, 100% { opacity: 0.2; transform: scale(0.8); }
+        50% { opacity: 0.9; transform: scale(1.1); }
+      }
+      @keyframes venusGlow {
+        0%, 100% { opacity: 0.85; transform: translate(-50%, -50%) scale(0.95); }
+        50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+      }
+    `;
+    document.head.appendChild(styleSheet);
+  }
+
+  // 3. Crear capa de cielo (Fondo degradado nocturno)
+  const skyLayer = document.createElement("div");
+  skyLayer.style.cssText = `
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+    background: 
+      radial-gradient(120% 78% at 50% 96%, rgba(232,118,58,.16), transparent 58%),
+      radial-gradient(74% 52% at 50% 40%, rgba(88,104,150,.20), transparent 70%),
+      linear-gradient(180deg, #05060c 0%, #0a0c16 42%, #141018 74%, #1c1410 100%);
+  `;
+
+  // 4. Generar estrellas finas
+  const totalStars = 100;
+  for (let i = 0; i < totalStars; i++) {
+    const star = document.createElement("span");
+    const x = (Math.random() * 100).toFixed(2);
+    const y = (Math.random() * 85).toFixed(2); // Repartidas en la parte superior
+    const size = (Math.random() * 1.5 + 0.5).toFixed(2);
+    const duration = (Math.random() * 4 + 2).toFixed(2);
+    const delay = (Math.random() * 4).toFixed(2);
+
+    star.style.cssText = `
+      position: absolute;
+      left: ${x}%;
+      top: ${y}%;
+      width: ${size}px;
+      height: ${size}px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      opacity: ${Math.random() * 0.7 + 0.2};
+      animation: softTwinkle ${duration}s ease-in-out infinite ${delay}s;
+    `;
+    skyLayer.appendChild(star);
+  }
+
+  // 5. El Lucero Central Destacado (Venus/Estrella principal)
+const mainStar = document.createElement("div");
+  mainStar.style.cssText = `
+    position: absolute;
+    top: 4%; /* <-- CAMBIA ESTE VALOR (estaba en 12%). Un valor menor SUBE la estrella */
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    background-color: #fff6d1;
+    border-radius: 50%;
+    box-shadow: 
+      0 0 10px 2px rgba(255, 255, 255, 0.9),
+      0 0 22px 6px rgba(244, 198, 77, 0.7),
+      0 0 45px 12px rgba(232, 118, 58, 0.4);
+    animation: venusGlow 4s ease-in-out infinite;
+  `;
+  skyLayer.appendChild(mainStar);
+
+  // Inyectar el fondo en el contenedor principal del certificado
+  certContainer.insertBefore(skyLayer, certContainer.firstChild);
+});
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const vistaCertificado = document.getElementById("vista-certificado");
+  const navLinks = document.querySelectorAll(".nav__links a, .nav__brand");
+
+  if (!vistaCertificado) return;
+
+  function gestionarNavegacion() {
+    const hash = window.location.hash;
+
+    // Si la URL contiene #certificado, mostramos la capa del certificado
+    if (hash === "#certificado") {
+      document.body.classList.add("is-certificado");
+      vistaCertificado.scrollTop = 0; // Reinicia el scroll interno del certificado
+    } else {
+      // Si la URL cambia a cualquier otra sección (#proyecto, #equipo, etc.), cerramos el certificado
+      document.body.classList.remove("is-certificado");
+
+      // Si hay una sección seleccionada, permitimos que el navegador o Lenis se desplace hacia ella
+      if (hash && hash !== "#inicio") {
+        setTimeout(() => {
+          const seccionTarget = document.querySelector(hash);
+          if (seccionTarget) {
+            seccionTarget.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 50);
+      }
+    }
+  }
+
+  // Interceptamos los clics de la barra de navegación para actualizar la URL
+  navLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const href = link.getAttribute("href");
+      if (href && href.startsWith("#")) {
+        e.preventDefault();
+        window.location.hash = href;
+      }
+    });
+  });
+
+  // Escuchamos los cambios en la URL (al presionar botones del menú o volver atrás en el navegador)
+  window.addEventListener("hashchange", gestionarNavegacion);
+
+  // Ejecución inicial al cargar
+  gestionarNavegacion();
+});
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const vistaCertificado = document.getElementById("vista-certificado");
+  const footerOriginal = document.querySelector("footer, .footer");
+
+  // Clonar el footer y colocarlo dentro de Certificados automáticamente
+  if (vistaCertificado && footerOriginal) {
+    const existeClon = vistaCertificado.querySelector("footer, .footer");
+    
+    if (!existeClon) {
+      const footerClonado = footerOriginal.cloneNode(true);
+      vistaCertificado.appendChild(footerClonado);
+    }
+  }
+});
+
+/* ================= Plantilla de certificado ========================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const vistaCertificado = document.getElementById("vista-certificado");
+  const footerOriginal = document.querySelector("footer, .footer");
+
+  // Clonar el footer y colocarlo dentro de Certificados automáticamente
+  if (vistaCertificado && footerOriginal) {
+    const existeClon = vistaCertificado.querySelector("footer, .footer");
+    
+    if (!existeClon) {
+      const footerClonado = footerOriginal.cloneNode(true);
+      vistaCertificado.appendChild(footerClonado);
+    }
+  }
+});
+
+// certificado.js - Generador avanzado de estrellas cósmicas
+document.addEventListener("DOMContentLoaded", () => {
+    const marco = document.querySelector('.certificado-marco');
+    if (!marco) return;
+
+    // Contenedor de estrellas
+    const contenedorEstrellas = document.createElement('div');
+    contenedorEstrellas.className = 'estrellas-container';
+    contenedorEstrellas.style.position = 'absolute';
+    contenedorEstrellas.style.top = '0';
+    contenedorEstrellas.style.left = '0';
+    contenedorEstrellas.style.width = '100%';
+    contenedorEstrellas.style.height = '100%';
+    contenedorEstrellas.style.pointerEvents = 'none';
+    contenedorEstrellas.style.overflow = 'hidden';
+    contenedorEstrellas.style.zIndex = '0';
+
+    // Cantidad alta para lograr el efecto denso de la referencia
+    const totalEstrellas = 220;
+
+    for (let i = 0; i < totalEstrellas; i++) {
+        const estrella = document.createElement('div');
+        
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        
+        // Tamaños variados para dar profundidad (efecto 3D)
+        const tipo = Math.random();
+        let tamaño, opacidad, sombra;
+
+        if (tipo > 0.85) {
+            // Estrellas grandes y brillantes
+            tamaño = Math.random() * 2 + 1.8;
+            opacidad = Math.random() * 0.4 + 0.8;
+            sombra = '0 0 6px rgba(255, 255, 255, 0.9)';
+        } else if (tipo > 0.5) {
+            // Estrellas medianas
+            tamaño = Math.random() * 1.5 + 1;
+            opacidad = Math.random() * 0.5 + 0.4;
+            sombra = '0 0 3px rgba(255, 255, 255, 0.5)';
+        } else {
+            // Polvo estelar / estrellas diminutas de fondo
+            tamaño = Math.random() * 0.8 + 0.4;
+            opacidad = Math.random() * 0.6 + 0.2;
+            sombra = 'none';
+        }
+        estrella.style.position = 'absolute';
+        estrella.style.left = `${x}%`;
+        estrella.style.top = `${y}%`;
+        estrella.style.width = `${tamaño}px`;
+        estrella.style.height = `${tamaño}px`;
+        estrella.style.backgroundColor = '#ffffff';
+        estrella.style.borderRadius = '50%';
+        estrella.style.opacity = opacidad;
+        estrella.style.boxShadow = sombra;
+        contenedorEstrellas.appendChild(estrella);
+    }
+    marco.insertBefore(contenedorEstrellas, marco.firstChild);
+});
+    // Formulario + impresión
+const URL_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbw7g1KgxHyq81fXR2AQ5PORcFNG47Ja8pym-ZcoRedknj_YeZOM2LyVQSl52f0vB8VwSA/exec";
+
+document.getElementById('formulario').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const dniIngresado = document.getElementById('DNI').value.trim();
+
+    if(!dniIngresado) {
+        alert("Por favor, ingresa un número de DNI.");
+        return;
+    }
+
+    const boton = document.getElementById('actionBtn');
+    boton.textContent = "Generando...";
+    boton.disabled = true;
+
+    // 1. Consultamos los datos a Google Sheets
+    fetch(`${URL_APPS_SCRIPT}?dni=${dniIngresado}`, {
+        method: "GET",
+        redirect: "follow"
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.error) {
+            alert(data.error);
+            boton.textContent = "Descarga tu certificado";
+            boton.disabled = false;
+        } else {
+            // 2. Rellenamos los datos en tu certificado web
+            document.getElementById('preview-nombre').textContent = data.datosCompletos; 
+            document.getElementById('preview-evento').textContent = data.nombreEvento;
+            document.getElementById('preview-dia').textContent    = data.dia;
+            document.getElementById('preview-mes').textContent    = data.mes;
+            document.getElementById('preview-anio').textContent   = data.anio;
+            document.getElementById('preview-lugar').textContent  = data.lugar;
+            document.getElementById('preview-fecha').textContent  = data.fecha;
+
+            // 3. PROCESO NETAMENTE CON JAVASCRIPT PARA IMPRESIÓN LIMPIA
+            setTimeout(() => {
+                const printArea = document.getElementById('print-area');
+                
+                if (!printArea) {
+                    alert("No se encontró el área de impresión.");
+                    boton.textContent = "Descarga tu certificado";
+                    boton.disabled = false;
+                    return;
+                }
+
+                // Guardamos el HTML original de toda la página para restaurarlo luego
+                const contenidoOriginalHTML = document.body.innerHTML;
+
+                // Reemplazamos temporalmente el body solo con el certificado para imprimir
+                document.body.innerHTML = printArea.outerHTML;
+
+                // Forzamos estilos en línea temporalmente para asegurar el tamaño A4 exacto en la impresión
+                const elementToPrint = document.body.firstElementChild;
+                if(elementToPrint) {
+                    elementToPrint.style.cssText = "width: 297mm; height: 210mm; margin: 0 auto; display: flex; justify-content: center; align-items: center; background-color: #0b0b0d; box-sizing: border-box;";
+                }
+
+                // Disparamos la impresión nativa
+                window.print();
+
+                // Restauramos inmediatamente la página web a su estado original
+                document.body.innerHTML = contenidoOriginalHTML;
+
+                // Opcional: Volvemos a enganchar el evento al formulario si se recargó el DOM interno
+                location.reload(); 
+
+            }, 300);
+        }
+    })
+    .catch(error => {
+        console.error('Error de red:', error);
+        alert("Hubo un error al conectar con la base de datos.");
+        boton.textContent = "Descarga tu certificado";
+        boton.disabled = false;
+    });
+});
