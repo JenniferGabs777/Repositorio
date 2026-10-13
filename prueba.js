@@ -1465,78 +1465,20 @@ document.getElementById('formulario').addEventListener('submit', function(e) {
 document.addEventListener("DOMContentLoaded", function () {
     const botonMenu = document.querySelector(".nav__toggle");
     const menuNavegacion = document.querySelector(".nav__links");
-    if (!botonMenu || !menuNavegacion) return;
-    let starContainer = null;
-    let intervalosEstrellas = [];
-    // Función para crear las estrellas
-    function crearEstrellas() {
-        if (starContainer) return; // Si ya existen, no duplicar
-
-        starContainer = document.createElement('div');
-        starContainer.style.position = 'absolute';
-        starContainer.style.inset = '0';
-        starContainer.style.pointerEvents = 'none';
-        starContainer.style.overflow = 'hidden';
-        starContainer.style.zIndex = '1';
-        
-        menuNavegacion.insertBefore(starContainer, menuNavegacion.firstChild);
-
-        for (let i = 0; i < 80; i++) {
-            const star = document.createElement('div');
-            const size = Math.random() * 2 + 1;
     
-            star.style.position = 'absolute';
-            star.style.width = `${size}px`;
-            star.style.height = `${size}px`;
-            star.style.backgroundColor = '#ffffff';
-            star.style.borderRadius = '50%';
-            star.style.left = `${Math.random() * 100}%`;
-            star.style.top = `${Math.random() * 100}%`;
-            star.style.boxShadow = '0 0 4px rgba(255, 255, 255, 0.8)';
-            star.style.opacity = Math.random() * 0.7 + 0.3;
-            
-            const duration = Math.random() * 3 + 2;
-            star.style.transition = `opacity ${duration}s ease-in-out`;
-            
-            starContainer.appendChild(star);
+    if (!botonMenu || !menuNavegacion) return;
 
-            // Guardar el intervalo para poder limpiarlo después
-            const interval = setInterval(() => {
-                if (star.style) {
-                    star.style.opacity = star.style.opacity === '0.2' ? '0.9' : '0.2';
-                }
-            }, duration * 1000);
-            
-            intervalosEstrellas.push(interval);
-        }
-    }
-    // Función para eliminar las estrellas y detener sus animaciones
-    function eliminarEstrellas() {
-        intervalosEstrellas.forEach(interval => clearInterval(interval));
-        intervalosEstrellas = [];
-
-        if (starContainer) {
-            starContainer.remove();
-            starContainer = null;
-        }
-    }
     // Abrir o cerrar al hacer clic en el botón hamburguesa
     botonMenu.addEventListener("click", function (e) {
         e.stopPropagation();
-        const estaAbierto = menuNavegacion.classList.toggle("nav__links--abierto");
-        
-        if (estaAbierto) {
-            crearEstrellas();
-        } else {
-            eliminarEstrellas();
-        }
+        menuNavegacion.classList.toggle("nav__links--abierto");
     });
+
     // Cerrar inmediatamente al hacer clic en cualquier opción del menú
     const enlaces = menuNavegacion.querySelectorAll("a");
     enlaces.forEach(function (enlace) {
         enlace.addEventListener("click", function () {
             menuNavegacion.classList.remove("nav__links--abierto");
-            eliminarEstrellas(); // Borra las estrellas al seleccionar una opción
         });
     });
 });
