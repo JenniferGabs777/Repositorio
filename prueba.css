@@ -1914,10 +1914,9 @@ font-size: 6px;
     opacity: 1 !important;
     visibility: visible !important;
     transform: translateY(0) !important;
-    background: radial-gradient(120% 130% at 15% 0%, rgba(19, 20, 56, 0.65) 0%, rgba(7, 8, 15, 0.90) 50%, #07080f 100%) !important;
+    background: radial-gradient(120% 130% at 15% 0%, rgba(7,8,15,.78) 0%, rgba(7, 8, 15, 0.90) 50%, #07080f 100%) !important;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-  }
 }
 }
 /* ========================= 9. RESPONSIVE ================================ */
