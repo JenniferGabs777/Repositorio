@@ -27,17 +27,28 @@
 </head>
 <body>
 
-    <!-- NAV: Se queda fuera para que sea global y visible en todo momento -->
-    <nav class="nav" id="nav" aria-label="Navegación principal">
-        <a class="nav__brand" href="#inicio"><span class="nav__brandFull">El Origen de la Cordillera Blanca y la Cordillera Negra</span><span class="nav__brandShort">El Origen</span></a>
-      <div class="nav__links">
+    <!-- NAV: botón hamburguesa -->
+<nav class="nav" id="nav" aria-label="Navegación principal">
+    <a class="nav__brand" href="#inicio">
+        <span class="nav__brandFull">El Origen de la Cordillera Blanca y la Cordillera Negra</span>
+        <span class="nav__brandShort">El Origen</span>
+    </a>
+    
+    <!-- ESTE BOTÓN DEBE ESTAR EN TU HTML -->
+    <button class="nav__toggle" aria-label="Menú">
+        <span class="nav__toggle-line"></span>
+        <span class="nav__toggle-line"></span>
+        <span class="nav__toggle-line"></span>
+    </button>
+
+    <div class="nav__links">
         <a href="#recorrido">Recorrido</a>
         <a href="#proxima">Próxima fecha</a>
         <a href="#proyecto">Proyecto</a>
         <a href="#equipo">Equipo</a>
         <a href="#certificado">Certificado</a>
-      </div>
-    </nav>
+    </div>
+</nav>
 
     <!-- VISTA INICIO: Inicia aquí -->
     <div id="vista-inicio">
@@ -334,8 +345,7 @@
 <div id="vista-certificado">
   <!-- SECCIÓN 1: Formulario -->
   <div class="seccion-formulario-arriba">
-    <div class="certificate-card">
-      <div class="certificate1">
+    <div class="certificate-=card">
         <section class="section1" id="certificado1">
           <div class="wra">
             <p class="eyebrow eyebrow--center">Certificado</p>
@@ -354,10 +364,7 @@
             <div class="datosCert">
               <div class="form">
                 <form action="" id="formulario">
-                  <h4 class="h3Cert">Nombres</h4>
-                  <input type="text" id="Nombres" name="nombres" placeholder="Ej.: María Elena" required>
-                  <h4 class="h3Cert">Apellidos</h4>
-                  <input type="text" id="Apellidos" name="apellidos" placeholder="Ej.: Pérez Rodríguez" required>
+
                   <h4 class="h3Cert">DNI / Código</h4>
                   <input type="text" id="DNI" name="dni" placeholder="Ej.: 12345678" maxlength="8" required>
                   <h4 class="h3Cert">Institución</h4>
@@ -374,9 +381,9 @@
             </div>
           </div>
         </section>
-      </div>
     </div>
   </div>
+
   <!-- SECCIÓN 2: Plantilla para certificado -->
   <div class="seccion-preview-abajo">
    <div id="print-area">
@@ -387,7 +394,7 @@
             <img src="mnt.png" alt="Fondo de montañas" class="bg-montanas">
           </div>
           <div class="certificate-card1">
-            <div class="certificate">
+            <div  class="certificate">
               <div class="Enc">
                 <h1 class="titlePri">
                   <span class="smallP">El Origen</span>
@@ -404,14 +411,21 @@
           </div>
           <h2 class="titlerecognition">Reconocimiento</h2>
           <p class="titleOt">Otorgado a</p>
+            <!-- Nombre del participante -->
             <h2 class="nombPart" id="preview-nombre">Nombre del participante</h2>
+
             <div class="text-cert">
               <p>Por su participación en</p>
+              <!-- Nombre del Evento -->
               <p class="textNeg" id="preview-evento">Nombre de la conferencia</p>
+
+              <!-- Día, Mes, Año y Lugar -->
               <p>realizada el día <span id="preview-dia">...</span> de <span id="preview-mes">...</span> del <span id="preview-anio">...</span> en <span id="preview-lugar">...</span></p>
             </div>
+
             <div class="footer-cert">
-              <span class="fechaCert" id="preview-fecha">Fecha de certificado</span>
+              <!-- Fecha completa del certificado -->
+  <span class="fechaCert" id="preview-fecha">Fecha de certificado</span>
           </div>
           <div class="signatures-container">
             <div class="signature-box">
