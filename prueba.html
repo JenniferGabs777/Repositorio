@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>El Origen de la Cordillera Blanca y la Cordillera Negra</title>
+    <meta name="description" content="Una ponencia documental que recorre el Callejón de Huaylas para contar, desde adentro, los más de 1000 millones de años que levantaron la Cordillera Blanca y la Cordillera Negra." />
+    <meta name="theme-color" content="#07080f" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://origen-de-las-cordilleras.meverick-jeampiere.workers.dev/" />
+    <meta property="og:title" content="El Origen de la Cordillera Blanca y la Cordillera Negra" />
+    <meta property="og:description" content="Una gira de ciencia, memoria y territorio por el Callejón de Huaylas." />
+    <meta property="og:image" content="https://origen-de-las-cordilleras.meverick-jeampiere.workers.dev/images/og-cover-2.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="El nevado sobre la laguna de Parón, Callejón de Huaylas" />
+    <meta property="og:locale" content="es_PE" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="El Origen de la Cordillera Blanca y la Cordillera Negra" />
+    <meta name="twitter:description" content="Una gira de ciencia, memoria y territorio por el Callejón de Huaylas." />
+    <meta name="twitter:image" content="https://origen-de-las-cordilleras.meverick-jeampiere.workers.dev/images/og-cover-2.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="prueba.css">
+</head>
+<body>
+    <!-- ======================= NAVEGACIÓN MÍNIMA ========================= -->
+    <nav class="nav" id="nav" aria-label="Navegación principal">
+      <a class="nav__brand" href="#inicio"><span class="nav__brandFull">El Origen de la Cordillera Blanca y la Cordillera Negra</span><span class="nav__brandShort">El Origen</span></a>
+      <div class="nav__links">
+        <a href="#recorrido">Recorrido</a>
+        <a href="#proxima">Próxima fecha</a>
+        <a href="#proyecto">Proyecto</a>
+        <a href="#equipo">Equipo</a>
+        <a href="#recorrido">Certificado</a>
+      </div>
+    </nav>
+    <!-- ============================ PORTADA ============================== -->
+    <!-- Al hacer scroll, la Cordillera Blanca se desplaza a la izquierda y la
+         Cordillera Negra a la derecha, descubriendo el valle. El movimiento se
+         controla con la variable --p (0 → 1) y por eso es reversible.        -->
+    <header class="hero" id="inicio">
+      <div class="hero__sticky" id="heroSticky">
+        <!-- Cielo, estrellas y valle -->
+        <div class="hero__sky" aria-hidden="true">
+          <div class="hero__stars" id="stars1"></div>
+          <div class="hero__stars2" id="stars2"></div>
+          <div class="hero__star"></div>
+          <div class="hero__valley">
+            <svg viewBox="0 0 160 62" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+              <defs>
+                <linearGradient id="gFar" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0"  stop-color="#39415c"/>
+                  <stop offset="1"  stop-color="#161a27"/>
+                </linearGradient>
+                <linearGradient id="gMid" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0"  stop-color="#232a3d"/>
+                  <stop offset="1"  stop-color="#0d1017"/>
+                </linearGradient>
+                <linearGradient id="gPeak" x1=".25" y1="0" x2=".75" y2="1">
+                  <stop offset="0"   stop-color="#ecd9bd"/>
+                  <stop offset=".28" stop-color="#c39468"/>
+                  <stop offset=".60" stop-color="#54402f"/>
+                  <stop offset="1"   stop-color="#161215"/>
+                </linearGradient>
+                <linearGradient id="gSnowTop" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0"   stop-color="#ffffff"/>
+                  <stop offset=".55" stop-color="#f3e6d2"/>
+                  <stop offset="1"   stop-color="#d9bfa4" stop-opacity=".2"/>
+                </linearGradient>
+                <linearGradient id="gLake" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#1a1520"/>
+                  <stop offset="1" stop-color="#07070e"/>
+                </linearGradient>
+                <linearGradient id="gRefl" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#ffd98a" stop-opacity=".26"/>
+                  <stop offset=".45" stop-color="#f4c64d" stop-opacity=".09"/>
+                  <stop offset="1" stop-color="#f4c64d" stop-opacity="0"/>
+                </linearGradient>
+                <radialGradient id="gHaze" cx=".5" cy=".72" r=".5">
+                  <stop offset="0"   stop-color="#e8a86a" stop-opacity=".24"/>
+                  <stop offset=".5"  stop-color="#e8a86a" stop-opacity=".07"/>
+                  <stop offset="1"   stop-color="#e8a86a" stop-opacity="0"/>
+                </radialGradient>
+                <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation=".9"/>
+                </filter>
+              </defs>
+              <!-- cordón lejano, difuminado por la distancia -->
+              <path d="M0,45 C10,41 17,35 25,37 C33,39 39,30 47,32 C55,34 61,28 69,31 C77,34 85,26 93,30
+                       C101,34 109,28 117,32 C125,36 133,29 143,33 C151,36 156,40 160,38 L160,54 L0,54 Z"
+                    fill="url(#gFar)" opacity=".55" filter="url(#soft)"/>
+              <!-- cordón intermedio -->
+              <path d="M0,50 L12,44 L24,48 L38,41 L50,47 L62,42 L74,46 L88,40 L100,47 L114,42 L128,48 L142,43 L160,49 L160,56 L0,56 Z"
+                    fill="url(#gMid)" opacity=".85"/>
+              <!-- resplandor detrás de la cumbre -->
+              <rect x="20" y="6" width="120" height="48" fill="url(#gHaze)"/>
+              <!-- macizo glaciar principal, de dos cumbres -->
+              <path d="M52,52 L66,30 L71,21 L76,12 L81,21 L85,16 L90,26 L96,34 L108,52 Z" fill="url(#gPeak)"/>
+              <!-- cara en sombra -->
+              <path d="M76,12 L81,21 L85,16 L90,26 L96,34 L108,52 L84,52 Z" fill="#120e12" opacity=".34"/>
+              <!-- nieve de la cumbre, con línea inferior irregular -->
+              <path d="M68,27 L71,21 L76,12 L81,21 L85,16 L90,26 L87,25 L84,29 L80,24 L77,29 L73,24 L70,29 Z"
+                    fill="url(#gSnowTop)" opacity=".95"/>
+              <!-- laguna -->
+              <rect x="0" y="51" width="160" height="11" fill="url(#gLake)"/>
+              <path d="M74,51 L86,51 L92,62 L68,62 Z" fill="url(#gRefl)"/>
+              <ellipse cx="80" cy="51.3" rx="13" ry=".9" fill="#ffe6a8" opacity=".38" filter="url(#soft)"/>
+            </svg>
+          </div>
+        </div>
+        <!-- Macizo izquierdo: CORDILLERA BLANCA -->
+        <div class="hero__panel hero__panel--blanca" aria-hidden="true">
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="gB1" x1="0" y1="0" x2="1" y2=".7">
+                <stop offset="0"   stop-color="#242e44"/>
+                <stop offset=".55" stop-color="#0e121c"/>
+                <stop offset="1"   stop-color="#05060c"/>
+              </linearGradient>
+              <linearGradient id="gB2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#eaf3ff" stop-opacity=".9"/>
+                <stop offset="1" stop-color="#93aec8" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0,10 L15,17 L27,40 L36,70 L43,100 L0,100 Z" fill="#0b0f1a" opacity=".95"/>
+            <path d="M0,0 H25 L37,8 L47,25 L56,48 L64,74 L72,100 L0,100 Z" fill="url(#gB1)"/>
+            <path d="M25,0 L37,8 L47,25 L53,40 L47,35 L40,20 L31,6 L25,2 Z" fill="url(#gB2)" opacity=".80"/>
+            <path d="M25,0 L37,8 L47,25 L56,48 L64,74 L72,100" fill="none" stroke="#dce9f7" stroke-opacity=".50" stroke-width="1" vector-effect="non-scaling-stroke"/>
+          </svg>
+          <span class="hero__panelLabel">Cordillera Blanca</span>
+        </div>
+        <!-- Macizo derecho: CORDILLERA NEGRA -->
+        <div class="hero__panel hero__panel--negra" aria-hidden="true">
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="gN1" x1="1" y1="0" x2="0" y2=".7">
+                <stop offset="0"   stop-color="#35271d"/>
+                <stop offset=".55" stop-color="#12100f"/>
+                <stop offset="1"   stop-color="#06060a"/>
+              </linearGradient>
+              <linearGradient id="gN2" x1="1" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#e8763a" stop-opacity=".42"/>
+                <stop offset="1" stop-color="#e8763a" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M100,12 L86,19 L74,42 L65,71 L58,100 L100,100 Z" fill="#0f0c0d" opacity=".95"/>
+            <path d="M100,0 H74 L62,10 L52,29 L43,53 L35,77 L28,100 L100,100 Z" fill="url(#gN1)"/>
+            <path d="M74,0 L62,10 L52,29 L47,42 L53,37 L60,22 L69,7 L74,2 Z" fill="url(#gN2)"/>
+            <path d="M74,0 L62,10 L52,29 L43,53 L35,77 L28,100" fill="none" stroke="#f0a06a" stroke-opacity=".42" stroke-width="1" vector-effect="non-scaling-stroke"/>
+          </svg>
+          <span class="hero__panelLabel">Cordillera Negra</span>
+        </div>
+        <!-- Título -->
+        <div class="hero__title">
+          <p class="hero__kicker">Proyecto</p>
+          <h1 class="hero__h1">
+            <span class="hero__small">El Origen</span>
+            <span class="hero__big hero__big--blanca"><em>de la</em> Cordillera Blanca</span>
+            <span class="hero__big hero__big--negra"><em>y la</em> Cordillera Negra</span>
+          </h1>
+          <div class="hero__rule" aria-hidden="true"></div>
+          <p class="hero__meta">CONFERENCIA · DOCUMENTAL · MUSICAL</p>
+        </div>
+        <div class="hero__cue" aria-hidden="true">
+          <span>Desliza hacia abajo</span>
+          <span class="hero__cueLine"></span>
+        </div>
+        <div class="hero__fade" aria-hidden="true"></div>
+      </div>
+    </header>
+    <main>
+    <!-- =========================== MANIFIESTO =========================== -->
+    <section class="section" id="manifiesto">
+      <div class="wrap manifesto">
+        <p class="eyebrow eyebrow--center reveal">Ciencia · Memoria · Sociedad</p>
+        <h2 class="manifesto__quote reveal" data-delay="1">Una obra donde el Callejón de Huaylas <em>narra su propia historia</em>.</h2>
+        <div class="manifesto__lines reveal" data-delay="2">
+          <span>En la voz de sus rocas.</span>
+          <span>En el resonar de sus ríos.</span>
+          <span>En la inmensidad de sus montañas.</span>
+          <span>Y en el resplandor de sus glaciares.</span>
+        </div>
+        <div class="stats reveal" data-delay="3">
+          <div class="stat"><span class="stat__n" data-count="16">16</span><span class="stat__l">Fechas<br>realizadas</span></div>
+          <div class="stat"><span class="stat__n" data-count="8">8</span><span class="stat__l">Ciudades<br>y sedes</span></div>
+          <div class="stat"><span class="stat__n" data-count="3000">3000<small>+</small></span><span class="stat__l">Asistentes<br>acumulados</span></div>
+          <div class="stat"><span class="stat__n" data-count="1000">1000<small>Ma</small></span><span class="stat__l">De historia<br>bajo nuestros pies</span></div>
+        </div>
+      </div>
+    </section>
+    <!-- ===================== CARRUSEL COVER FLOW ======================== -->
+    <section class="section cf" id="recorrido">
+      <div class="wrap">
+        <p class="eyebrow eyebrow--center reveal">El recorrido</p>
+        <h2 class="h2 reveal" data-delay="1" style="text-align:center;max-width:22ch;margin-inline:auto">16 fechas. <br><em>Uniendo al Callejón de Huaylas.</em></h2>
+      </div>
+      <!-- Escenario 3D: se arrastra con el dedo, el mouse, la rueda o el teclado -->
+      <div class="cf__stage" id="cfStage" tabindex="0" role="group"
+           aria-roledescription="carrusel de fotografías"
+           aria-label="Fechas del proyecto. Usa las flechas izquierda y derecha, o arrastra las fotografías.">
+      </div>
+      <div class="wrap">
+        <div class="cf__info" id="cfInfo" aria-live="polite">
+          <p class="cf__count"><b id="cfNum">01</b><span>/</span><b id="cfTotal">16</b></p>
+          <p class="cf__place" id="cfPlace">—</p>
+          <h3 class="cf__title" id="cfTitle">—</h3>
+          <p class="cf__desc" id="cfDesc">—</p>
+          <p class="cf__venue" id="cfVenue">—</p>
+        </div>
+        <div class="cf__bar" aria-hidden="true"><div class="cf__barFill" id="cfBar"></div></div>
+        <div class="cf__nav">
+          <button class="cf__btn" id="cfPrev" type="button" aria-label="Fotografía anterior">&#8249;</button>
+          <span class="cf__hint">Arrastra las fotografías</span>
+          <button class="cf__btn" id="cfNext" type="button" aria-label="Fotografía siguiente">&#8250;</button>
+        </div>
+      </div>
+    </section>
+    <!-- ========================= PRÓXIMA FECHA ========================== -->
+    <section class="section" id="proxima" style="padding-block:0">
+      <div class="wrap">
+        <div class="next reveal">
+          <div class="next__when">
+            <span class="next__day">27</span>
+            <span class="next__mon">Agosto 2026</span>
+            <span class="next__hour">9:00 a. m.</span>
+          </div>
+          <div class="next__div" aria-hidden="true"></div>
+          <div>
+            <p class="next__tag">Próxima fecha</p>
+            <h2 class="next__where">Colegio Semillas de Vida</h2>
+            <p class="next__note">La gira continúa. Una nueva generación escuchará cómo se levantaron las montañas que ven cada mañana desde su ventana.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- =========================== EL PROYECTO ========================== -->
+    <section class="section" id="proyecto">
+      <div class="wrap">
+            <div class="proj">
+          <div class="proj__head">
+            <div>
+              <p class="eyebrow reveal">Qué es</p>
+              <h2 class="h2 reveal" data-delay="1">Una conferencia cinematográfica <em>narrada en vivo</em>.</h2>
+            </div>
+            <div class="proj__text">
+              <p class="lead reveal" data-delay="2">
+                Vamos más allá de una charla académica o un documental proyectado. Este es un relato construido a partir de
+                cientos de artículos científicos para convertirse en un viaje inmersivo por el tiempo profundo.
+              </p>
+              <p class="lead reveal" data-delay="3">
+                La presentación se adapta al lugar que la recibe: auditorios, salones municipales, patios,
+                casonas y espacios abiertos. Cada sede le cambia el cuerpo, pero no la pregunta de fondo.
+              </p>
+            </div>
+          </div>
+          <!-- MOLDURA 16:9 · la imagen entra completa, sin recorte -->
+          <figure class="frame frame--16x9 proj__shot reveal" data-delay="1">
+            <img src="images/fechas/fecha-mm.jpg" alt="Presentación de la ponencia ante el público" loading="lazy">
+            <figcaption class="frame__cap">Auditorio Huáscar y Huandy · Yungay</figcaption>
+          </figure>
+          <div class="pullquote proj__quote reveal" data-delay="2">
+            <p>Aquí las cordilleras dejan de ser apenas un paisaje bonito para revelarse como uno de los capítulos más importantes de la historia del planeta.</p>
+            <cite>Meverick Jeampiere · creador de la obra</cite>
+          </div>
+        </div>
+
+        <div class="cards">
+          <article class="card-obj reveal">
+            <span class="card-obj__n">01</span>
+            <h3>Reconstruir</h3>
+            <p>Reunir en un solo relato lo que la geología, la arqueología y la glaciología han descubierto sobre el Callejón de Huaylas, y ordenarlo en una línea de tiempo comprensible.</p>
+          </article>
+          <article class="card-obj reveal" data-delay="1">
+            <span class="card-obj__n">02</span>
+            <h3>Devolver la ciencia</h3>
+            <p>Que el conocimiento producido sobre este territorio regrese a quienes lo habitan, con rigor pero también con calidez. Cuando eso ocurre, la ciencia deja de sentirse lejana.</p>
+          </article>
+          <article class="card-obj reveal" data-delay="2">
+            <span class="card-obj__n">03</span>
+            <h3>Unir generaciones</h3>
+            <p>Niños, jóvenes, autoridades, especialistas y sectores que años atrás estuvieron enfrentados, sentados en la misma sala frente a una misma historia.</p>
+          </article>
+          <article class="card-obj reveal" data-delay="3">
+            <span class="card-obj__n">04</span>
+            <h3>Del desastre a la innovación</h3>
+            <p>Pasar de esperar el desastre a ser una sociedad que decide mejor, gestiona su riesgo y crea tecnología para el futuro de sus cordilleras.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- ======================= TIEMPO GEOLÓGICO ========================= -->
+    <section class="section" id="tiempo">
+      <div class="wrap">
+        <p class="eyebrow reveal">Más de 100 millones de años bajo nuestros pies</p>
+        <h2 class="h2 reveal" data-delay="1">Nuestro tiempo es <em>un parpadeo</em>.</h2>
+        <p class="lead reveal" data-delay="2">
+         El Perú republicano tiene poco más de doscientos años; el río Santa, cerca de siete millones. Contemplar el tiempo profundo de ambas cordilleras nos obliga a replantear una pregunta esencial: ¿este territorio nos pertenece o somos nosotros quienes le pertenecemos?.
+        </p>
+      </div>
+      <!-- Carril deslizable: los hitos se construyen desde el arreglo TIEMPO -->
+      <div class="tl reveal" data-delay="3" id="tl" tabindex="0" role="group"
+           aria-roledescription="línea de tiempo deslizable"
+           aria-label="Escala geológica del Callejón de Huaylas. Usa las flechas izquierda y derecha, o arrastra.">
+        <div class="tl__rail" aria-hidden="true"></div>
+      </div>
+      <div class="wrap">
+        <div class="tl__foot">
+          <button class="tl__btn" id="tlPrev" type="button" aria-label="Hito anterior">&#8249;</button>
+          <div class="tl__bar" aria-hidden="true"><div class="tl__barFill" id="tlBar"></div></div>
+          <button class="tl__btn" id="tlNext" type="button" aria-label="Hito siguiente">&#8250;</button>
+        </div>
+        <div class="tl__ends" aria-hidden="true">
+          <span>Hace 200 millones de años</span>
+          <span>Hoy</span>
+        </div>
+      </div>
+    </section>
+    <!-- ============================= EQUIPO ============================= -->
+    <section class="section" id="equipo">
+      <div class="wrap">
+        <p class="eyebrow eyebrow--center reveal">Equipo interdisciplinario internacional</p>
+        <h2 class="h2 reveal" data-delay="1" style="text-align:center;max-width:20ch;margin-inline:auto">Ocho personas, <em>una misma pregunta</em>.</h2>
+        <div class="team" id="teamGrid"></div>
+      </div>
+    </section>
+    
+    
+    
+    <!-- ============================= CERTIFICADO ============================= -->
+    <div class="certificate-card">
+      <div style="width: 100%;" class="certificate">
+        <section style="width: 111%; max-width: 111%; min-width: 0px; margin-left: 0px; margin-right: 0px; padding-left: auto; padding-right: auto;" class="section" id="certificado">
+          <div style="font-size: 40px; padding-right: auto; padding-left: auto; min-width: 0px; width: auto; margin-left: -28px; margin-right: -28px;" class="wrap">
+            <p class="eyebrow eyebrow--center ">Certificado</p>
+            <h1 class="hero__h1" style="text-align:center">
+              <span class="hero__small">El Origen</span>
+              <span style="width: auto;" class="hero__big hero__big--blanca"><em>de la</em> Cordillera Blanca</span>
+              <span class="hero__big hero__big--negra"><em>y la</em> Cordillera Negra</span>
+            </h1>
+            <div class="hero__rule" aria-hidden="true"></div>
+            <p class="hero__meta">CONFERENCIA · DOCUMENTAL · MUSICAL</p>
+            <div class="title-stage-mountain-wrap">
+              <img class="title-stage-mountain-img" 
+                   src="https://meverick-jeampiere.github.io/tickets-cordillera/huascaran-geometrico.png" 
+                   alt="Huascarán geométrico"
+                   style="filter: url(#remover-fondo-blanco); display: block; min-height: 0px; margin: 0px; padding: 0px;">
+            </div>
+            <h2 class="h2" data-delay="1">Genera <em>tu certificado</em></h2>
+            <h3 class="project__t"><small>Ingresa tus datos para continuar</small></h3>
+            <div class="form">
+              <form action="" id="formulario">
+               <h3 class="project__t">Evento en el que participó</h3>
+                <select name="evento" class="input-flat" required>
+                  <option value="" disabled selected>Seleccione un evento</option>
+                  <option value="conferencia1">Conferencia 1</option>
+                  <option value="conferencia2">Conferencia 2</option>
+                  <option value="conferencia3">Conferencia 3</option>
+                </select>
+                <h3 class="project__t">DNI</h3>
+                  <input type="text" id="DNI" name="dni" placeholder="Ej.: 12345678" maxlength="8" pattern="[0-9]{8}" required>
+                  <button class="downloader" id="actionBtn" disabled="" type="submit" >Descarga tu certificado</button>
+              </form>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    
+    
+    
+    
+    <!-- ===================== PROYECTOS Y ALIADOS ======================== -->
+    <section class="section" id="proyectos">
+      <div class="wrap">
+        <p class="eyebrow reveal">Lo que abrió la gira</p>
+        <h2 class="h2 reveal" data-delay="1">Un relato que activa <em>propuestas y medidas concretas</em>.</h2>
+        <p class="lead reveal" data-delay="2">
+          Cada fecha deja algo detrás: un pueblo que se organiza para limpiar su río, una dirección regional
+          que se compromete a llevar el material a sus UGEL, un guía veterano que quiere dedicarle una sala
+          de museo. Estas son las líneas de trabajo que nacieron del recorrido.
+        </p>
+        <div class="projects reveal" data-delay="3">
+          <article class="project"><span class="project__who">Denisse Castillo</span><h3 class="project__t">La Cordillera Blanca como sujeto de derecho<small>Marco normativo para la protección del los glaciares peruanos.</small></h3><span class="project__mark">→</span></article>
+          <article class="project"><span class="project__who">Adrián Figueroa</span><h3 class="project__t">Embajadores de los Glaciares<small>Capacitación a la juventud huaylina para promover la protección de los glaciares.</small></h3><span class="project__mark">→</span></article>
+          <article class="project"><span class="project__who">Aine Gunn</span><h3 class="project__t">La Memoria del Huascarán Kids<small>Una introducción a la glaciología para niños.</small></h3><span class="project__mark">→</span></article>
+          <article class="project"><span class="project__who">Carolay Sánchez</span><h3 class="project__t">Diseño inspirado en las montañas<small>Del retroceso glaciar a la creación de objetos y relatos.</small></h3><span class="project__mark">→</span></article>
+          <article class="project"><span class="project__who">Vangie Gomero</span><h3 class="project__t">Pintaykuna<small>Desarrollo de una pintura fotocatalítica que transforma los contaminantes del aire.</small></h3><span class="project__mark">→</span></article>
+     <article class="project"><span class="project__who">Wilmer Sánchez</span><h3 class="project__t">La Memoria del Huascarán<small>Obra que cuenta los logros y desafíos de la expedición de 2019 liderada por Lonnie Thompson.</small></h3><span class="project__mark">→</span></article>
+        </div>
+        <p class="eyebrow reveal" style="margin-top:clamp(48px,7vw,84px)">Gracias a</p>
+        <div class="allies reveal" data-delay="1">
+          <span>Cumbres Blancas Perú</span>
+          <span>Misión Italiana Antonio Raimondi</span>
+          <span>Casona Lara</span>
+          <span>INAIGEM</span>
+          <span>UNASAM</span>
+          <span>AGOEMA</span>
+          <span>Caraz Cultura</span>
+          <span>HDC Mancos</span>
+          <span>Aqará</span>
+          <span>MotoRent</span>
+          <span>DDC Áncash</span>
+          <span>Casa de la Cultura de Yungay</span>
+          <span>Cable Andino</span>
+          <span>Áncash Noticias</span>
+        </div>
+      </div>
+    </section>
+    </main>
+    <!-- ============================== PIE =============================== -->
+    <footer class="footer" id="contacto">
+      <div class="wrap">
+        <div class="footer__top">
+          <h2 class="footer__title">Esta gran historia <em>continúa en cada uno de ustedes</em>.</h2>
+          <div class="footer__links">
+            <a href="https://www.instagram.com/meverick10" target="_blank" rel="noopener">Instagram · @meverick10</a>
+            <a href="#recorrido">Ver el recorrido completo</a>
+            <a href="#proxima">Próxima fecha · 27 de agosto</a>
+            <span style="font-size:.86rem;color:var(--muted-2)">Huaraz, Áncash · Perú</span>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <span>El Origen de la Cordillera Blanca y la Cordillera Negra</span>
+          <span>© 2026 · CBCN</span>
+        </div>
+      </div>
+    </footer>
+    <script src="prueba.js"></script>
+</body>
+</html>
