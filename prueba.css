@@ -1168,7 +1168,6 @@ display: flex;
   -webkit-text-fill-color: #ffffff !important;
   transition: background-color 5000s ease-in-out 0s;
 }
-
 /* Estilo para las opciones del desplegable */
 #formulario select option {
   background-color: #121212 !important; /* Cambia el fondo oscuro de las opciones */
@@ -1180,7 +1179,6 @@ display: flex;
   background-color: #f4be4f !important; /* Cambia al tono anaranjado o amarillo que prefieras */
   color: #f4be4f  !important;            /* Color del texto al pasar el puntero */
 }
-
 #formulario .downloader {
   width: 100%;
   height: 48px;
@@ -1332,10 +1330,11 @@ gap: 0px;
 align-items: center;
 }
 .hero__small{
-  font-size:clamp(.98rem,2.5vw,1.62rem);
-  font-weight:400;
-  letter-spacing:.06em;
-  color:rgba(243,238,226,.88);
+font-size:clamp(.98rem,2.5vw,1.62rem);
+font-weight:400;
+letter-spacing:.06em;
+color:rgba(243,238,226,.88);
+text-align: center;
 }
 .titlePri, smallP{
 font-size: 10px;
@@ -1593,6 +1592,7 @@ font-size: 6px;
   .preview-info-text {
     font-size: 2.2rem;} 
 }
+
     /* === Print certificado === */
 @media print {
     @page {
@@ -1644,11 +1644,15 @@ font-size: 6px;
         outline: 3px solid rgba(244, 198, 77, 0.5) !important;
         justify-content: center !important;
         align-items: center !important;
+        
+        /* Tu escala intacta */
         transform: scale(1.05) !important;
         transform-origin: center center !important;
+
         /* Optimizaciones añadidas para que la tipografía no se altere */
         -webkit-font-smoothing: antialiased !important;
         text-rendering: optimizeLegibility !important;
+
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
     }
@@ -1771,6 +1775,8 @@ font-size: 6px;
   color:var(--muted-2);
 }
 /* Barra de navegación mínima */
+/* --- TUS ESTILOS BASE (Pantalla Grande) --- */
+/* --- ESTILOS BASE (Pantallas Grandes / PC) --- */
 .nav {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -1787,10 +1793,12 @@ font-size: 6px;
   opacity: 0;
   pointer-events: auto;
 }
+
 .nav__logo {
   white-space: normal !important;
   line-height: 1.2;
 }
+
 .nav.is-stuck {
   background: rgba(7,8,15,.78);
   backdrop-filter: blur(14px);
@@ -1799,6 +1807,7 @@ font-size: 6px;
   opacity: 1;
   pointer-events: auto;
 }
+
 .nav__brand {
   font-family: var(--f-display);
   font-size: clamp(0.50rem, 3vw, 0.90rem);
@@ -1812,13 +1821,16 @@ font-size: 6px;
   line-height: 1.15;
   min-width: 0;
 }
+
 .nav__brandFull { display: inline; }
 .nav__brandShort { display: none; }
+
 /* En PC los enlaces se ven en línea normal */
 .nav__links { 
   display: flex; 
   gap: clamp(14px, 2.2vw, 28px);
 }
+
 /* Enlaces de escritorio */
 .nav__links a {
   font-family: var(--f-display);
@@ -1831,9 +1843,11 @@ font-size: 6px;
   background: transparent;
   transition: color 0.3s ease;
 }
+
 .nav__links a:hover { 
   color: var(--gold); 
 }
+
 /* --- ESTILOS DEL BOTÓN MÓVIL --- */
 .nav__toggle {
   display: none; /* Oculto en PC / pantallas grandes */
@@ -1849,6 +1863,7 @@ font-size: 6px;
   z-index: 100;
   flex-shrink: 0;
 }
+
 .nav__toggle-line {
   display: block;
   width: 100%;
@@ -1856,6 +1871,7 @@ font-size: 6px;
   background-color: var(--cream);
   pointer-events: none;
 }
+
 /* --- DISEÑO RESPONSIVE (Ajustado a 1100px para evitar que colapse antes de tiempo) --- */
 @media (max-width: 1100px) {
   .nav__toggle {
@@ -1868,7 +1884,7 @@ font-size: 6px;
     left: 0;
     width: 100%;
     height: calc(100vh - 60px);
-    background: transparent !important; 
+    background: transparent !important; /* Transparente por defecto al cerrar */
     backdrop-filter: none;
     display: flex !important;
     flex-direction: column;
@@ -1883,6 +1899,7 @@ font-size: 6px;
     transform: translateY(-10px);
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
   }
+
   /* ESTILO PARA LOS ENLACES EN MÓVIL */
   .nav__links a {
     font-family: var(--f-display);
@@ -1902,6 +1919,7 @@ font-size: 6px;
     border-bottom: 1px solid rgba(243, 238, 226, 0.12) !important;
     transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
   }
+
   /* Al pasar el cursor o tocar una opción en móvil */
   .nav__links a:hover,
   .nav__links a:active {
@@ -1909,6 +1927,7 @@ font-size: 6px;
     background: rgba(244, 198, 77, 0.08) !important;
     border-bottom-color: var(--gold) !important;
   }
+
   /* Estado cuando se abre el menú */
 .nav__links.nav__links--abierto {
     opacity: 1 !important;
@@ -1917,7 +1936,7 @@ font-size: 6px;
     background: radial-gradient(120% 130% at 15% 0%, rgba(7,8,15,.78) 0%, rgba(7, 8, 15, 0.90) 50%, #07080f 100%) !important;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-}
+  }
 }
 /* ========================= 9. RESPONSIVE ================================ */
 /* Tablet */
@@ -1997,11 +2016,9 @@ font-size: 6px;
   .project__mark{ display:none; }
   /* Navegación móvil: marca corta + un solo botón de acción */
   .nav{ padding-block:11px; }
-  .nav__brandFull{ display:; }
   .nav__brandShort{ display:inline; }
   .nav__brand{ font-size:.62rem; letter-spacing:.16em; }
-  .nav__links a{ display:none; }
-}
+  .nav__links a{ display:none; }}
 /* Móvil en horizontal: el carrusel se aplana un poco para caber en altura */
 @media (max-height:520px) and (orientation:landscape){
   .cf{ --cf-card-w:170px; --cf-visible:3; }
